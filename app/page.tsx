@@ -28,16 +28,16 @@ export default function Home() {
         {/* Main Heading */}
         <div className="space-y-4">
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-pretty">
-            Coming Soon
+            Welcome
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground font-light">
-            Amici et Amour is preparing something extraordinary
+            Now Open
           </p>
         </div>
 
         {/* Description */}
         <p className="text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto">
-          Our restaurant is currently under construction. We're crafting an exceptional dining experience that celebrates the finest in Italian and French cuisine, blending tradition with innovation.
+          Experience an exceptional dining destination celebrating the finest in Italian and French cuisine. Join us for an unforgettable journey blending tradition with innovation.
         </p>
 
         {/* Contact Info */}
