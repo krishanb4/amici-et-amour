@@ -40,6 +40,25 @@ export default function Home() {
           Experience an exceptional dining destination celebrating the finest in Italian and French cuisine. Join us for an unforgettable journey blending tradition with innovation.
         </p>
 
+        {/* Opening Hours */}
+        <div className="bg-card border border-border rounded-lg p-8 space-y-6">
+          <h2 className="text-2xl font-serif font-bold">Opening Hours</h2>
+          <div className="space-y-3 text-left max-w-sm mx-auto">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Monday - Friday</span>
+              <span className="font-semibold">12:00 p.m. - 12:00 a.m.</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Saturday</span>
+              <span className="font-semibold">12:00 p.m. - 2:00 a.m.</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Sunday</span>
+              <span className="font-semibold">12:00 p.m. - 10:00 p.m.</span>
+            </div>
+          </div>
+        </div>
+
         {/* Contact Info */}
         <div className="flex flex-col items-center gap-4 pt-8 border-t border-border/30">
           <Mail className="w-6 h-6 text-primary" />
