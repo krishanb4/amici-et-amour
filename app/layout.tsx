@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Amici et Amour - Coming Soon',
-  description: 'Amici et Amour - An exceptional dining experience celebrating Italian and French cuisine. Opening soon.',
+  title: 'Amici et Amour - Now Open',
+  description: 'Amici et Amour - An exceptional dining experience celebrating Italian and French cuisine. Now open.',
   generator: 'v0.app',
   icons: {
     icon: [
