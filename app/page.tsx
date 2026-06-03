@@ -45,16 +45,12 @@ export default function Home() {
           <h2 className="text-2xl font-serif font-bold">Opening Hours</h2>
           <div className="space-y-3 text-left max-w-sm mx-auto">
             <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Monday - Friday</span>
-              <span className="font-semibold">12:00 p.m. - 12:00 a.m.</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Saturday</span>
-              <span className="font-semibold">12:00 p.m. - 2:00 a.m.</span>
+              <span className="text-muted-foreground">Monday - Saturday</span>
+              <span className="font-semibold">11:00 a.m. - 11:00 p.m.</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Sunday</span>
-              <span className="font-semibold">12:00 p.m. - 10:00 p.m.</span>
+              <span className="font-semibold">Closed</span>
             </div>
           </div>
         </div>
