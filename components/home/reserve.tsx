@@ -1,0 +1,156 @@
+"use client"
+
+import { useState } from "react"
+import { MapPin, Phone, Clock, ArrowRight } from "lucide-react"
+import { toast } from "sonner"
+import { useLanguage } from "@/components/language-provider"
+import { Reveal } from "@/components/motion/reveal"
+import { SplitText } from "@/components/motion/split-text"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { SITE } from "@/lib/site"
+import { IMAGES } from "@/lib/images"
+
+const SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"]
+
+export function Reserve() {
+  const { t } = useLanguage()
+  const [loading, setLoading] = useState(false)
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const data = new FormData(e.currentTarget)
+    if (!data.get("name") || !data.get("email")) {
+      toast.error("Please add your name and email.")
+      return
+    }
+    setLoading(true)
+    await new Promise((r) => setTimeout(r, 700)) // Brevo wiring lands in Phase 3
+    setLoading(false)
+    toast.success("Request received. We'll confirm your table by email shortly.")
+    e.currentTarget.reset()
+  }
+
+  return (
+    <section className="container-edge py-28 lg:py-40">
+      <div className="grid grid-cols-1 overflow-hidden rounded-sm border border-border lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Form */}
+        <div className="bg-card p-8 sm:p-12">
+          <span className="eyebrow flex items-center gap-3">
+            <span className="h-px w-8 bg-green/50" />
+            Reservations
+          </span>
+          <SplitText
+            as="h2"
+            text="Reserve your table."
+            className="mt-5 font-display text-4xl font-normal leading-tight tracking-tight sm:text-5xl"
+          />
+          <p className="mt-4 max-w-md text-sm text-muted-foreground">
+            Tell us when, and for how many. We hold the room from 18:00, Monday to
+            Saturday.
+          </p>
+
+          <form onSubmit={onSubmit} className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <Field label="Full name" htmlFor="name">
+              <Input id="name" name="name" placeholder="Marco Vitale" required />
+            </Field>
+            <Field label="Phone" htmlFor="phone">
+              <Input id="phone" name="phone" type="tel" placeholder="+971 50 000 0000" />
+            </Field>
+            <Field label="Email" htmlFor="email">
+              <Input id="email" name="email" type="email" placeholder="you@email.com" required />
+            </Field>
+            <Field label="Guests" htmlFor="guests">
+              <Input id="guests" name="guests" type="number" min={1} max={20} defaultValue={2} />
+            </Field>
+            <Field label="Date" htmlFor="date">
+              <Input id="date" name="date" type="date" />
+            </Field>
+            <Field label="Time" htmlFor="slot">
+              <select
+                id="slot"
+                name="slot"
+                className="h-10 w-full rounded-sm border border-input bg-card px-3 text-sm outline-none transition-colors focus:border-green"
+                defaultValue="19:30"
+              >
+                {SLOTS.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <div className="sm:col-span-2">
+              <Field label="Occasion / notes" htmlFor="occasion">
+                <Input id="occasion" name="occasion" placeholder="Anniversary, allergies, a quiet corner…" />
+              </Field>
+            </div>
+            <div className="sm:col-span-2">
+              <Button type="submit" size="lg" disabled={loading} className="w-full">
+                {loading ? "Sending…" : t("cta.reserve")}
+                {!loading ? <ArrowRight className="size-4" /> : null}
+              </Button>
+            </div>
+          </form>
+        </div>
+
+        {/* Visit panel */}
+        <div className="relative min-h-[420px] overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={IMAGES.interior}
+            alt="The dining room at Amici et Amour"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/10" />
+          <div className="relative flex h-full flex-col justify-end gap-6 p-8 text-background sm:p-12">
+            <span className="font-display text-3xl">
+              Amici <span className="italic">et</span> Amour
+            </span>
+            <ul className="flex flex-col gap-4 text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 size-4 shrink-0 opacity-80" strokeWidth={1.5} />
+                <a href={SITE.address.mapsUrl} target="_blank" rel="noreferrer" className="hover:underline">
+                  {SITE.address.line1}, {SITE.address.line2}
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 size-4 shrink-0 opacity-80" strokeWidth={1.5} />
+                <a href={SITE.phoneHref} className="hover:underline">
+                  {SITE.phone}
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock className="mt-0.5 size-4 shrink-0 opacity-80" strokeWidth={1.5} />
+                <span>
+                  {t("hours.weekdays")}, {t("hours.weekdays_time")} · {t("hours.sunday")} {t("hours.sunday_time")}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Field({
+  label,
+  htmlFor,
+  children,
+}: {
+  label: string
+  htmlFor: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <Label htmlFor={htmlFor} className="text-xs font-medium uppercase tracking-[0.12em] text-foreground/70">
+        {label}
+      </Label>
+      {children}
+    </div>
+  )
+}
