@@ -248,6 +248,36 @@ export const RESERVATION_NOTES = [
   },
 ] as const
 
+/** Press recognition + aggregate guest rating — used in the home credibility band. */
+export const RECOGNITION = {
+  rating: { score: "4.8", count: "2,300+" },
+  press: ["Michelin Guide", "Le Fooding", "Le Figaro", "Condé Nast Traveler"],
+} as const
+
+/** Guest words — used in the home testimonials section. First entry is featured. */
+export const TESTIMONIALS = [
+  {
+    id: "elodie",
+    quote:
+      "The kind of room you come to for one dinner and leave having booked the next. The tagliolini al tartufo alone is worth crossing Paris for.",
+    name: "Élodie Vasseur",
+    detail: "Regular since 2019, Paris",
+  },
+  {
+    id: "marco",
+    quote:
+      "Italian warmth, French precision, and a wine list that genuinely surprises. We came for an anniversary and were looked after all night.",
+    name: "Marco Bianchi",
+    detail: "Visiting from Milan",
+  },
+  {
+    id: "hannah",
+    quote: "Easily the best meal we've had in the city this year.",
+    name: "Hannah Whitlock",
+    detail: "London",
+  },
+] as const
+
 /** Quick answers used on the /contact page. */
 export const CONTACT_TOPICS = [
   { id: "reservation", label: "A reservation", note: "The fastest route is the booking form, but we'll always answer by phone." },

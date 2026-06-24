@@ -3,16 +3,52 @@ import { PageHeader } from "@/components/page-header"
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { Reserve } from "@/components/home/reserve"
 import { RESERVATION_NOTES } from "@/lib/content"
+import { JsonLd } from "@/components/structured-data"
+import { faqSchema, breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Reservations",
   description:
     "Reserve a table at Amici et Amour, 24 Rue de Castiglione, Paris. We hold the room from 18:00, Monday to Saturday.",
+  alternates: { canonical: "/reservation" },
 }
+
+/** Common booking questions — surfaced to AI answer engines via FAQ schema. */
+const RESERVATION_FAQS = [
+  {
+    question: "Where is Amici et Amour located?",
+    answer:
+      "Amici et Amour is at 24 Rue de Castiglione, 75001 Paris, France, in the 1st arrondissement near the Tuileries and Place Vendôme.",
+  },
+  {
+    question: "What are the opening hours?",
+    answer: "We serve Monday to Saturday, 11:00–23:00. We are closed on Sundays.",
+  },
+  {
+    question: "What kind of cuisine does Amici et Amour serve?",
+    answer:
+      "A modern menu where Italian soul meets French finesse — handmade pasta, wood-fired pizza, grill, seafood, dolci, and a low-intervention wine cellar.",
+  },
+  {
+    question: "How do I make a reservation?",
+    answer:
+      "Book directly through the reservation form on this page, or call +33 1 42 60 38 30. We confirm by email, usually within the hour during service.",
+  },
+  ...RESERVATION_NOTES.map((n) => ({ question: n.title, answer: n.desc })),
+]
 
 export default function ReservationPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          faqSchema(RESERVATION_FAQS),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Reservations", path: "/reservation" },
+          ]),
+        ]}
+      />
       <PageHeader
         eyebrow="Reservations · Réservations"
         title={

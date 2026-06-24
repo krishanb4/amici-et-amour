@@ -4,11 +4,14 @@ import { ArrowUpRight } from "lucide-react"
 import { PageHeader } from "@/components/page-header"
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { JOURNAL } from "@/lib/content"
+import { JsonLd } from "@/components/structured-data"
+import { breadcrumbSchema, abs } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Journal",
   description:
     "Notes from the kitchen at Amici et Amour — sourcing, craft, and the small obsessions behind the plate.",
+  alternates: { canonical: "/blogs" },
 }
 
 export default function BlogsPage() {
@@ -16,6 +19,26 @@ export default function BlogsPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Journal", path: "/blogs" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "The Amici et Amour Journal",
+            url: abs("/blogs"),
+            blogPost: JOURNAL.map((p) => ({
+              "@type": "BlogPosting",
+              headline: p.title,
+              url: abs(`/blog/${p.id}`),
+              author: { "@type": "Person", name: p.author },
+            })),
+          },
+        ]}
+      />
       <PageHeader
         eyebrow="The Journal · Le Carnet"
         title={

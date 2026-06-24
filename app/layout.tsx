@@ -3,6 +3,16 @@ import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Providers } from "@/components/providers"
+import { JsonLd } from "@/components/structured-data"
+import {
+  SITE_URL,
+  OG_IMAGE,
+  OG_IMAGE_ALT,
+  seoConfig,
+  restaurantSchema,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/seo"
 import "./globals.css"
 
 const inter = Inter({
@@ -26,27 +36,77 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Amici et Amour — Italian & French Fine Dining · Paris",
     template: "%s · Amici et Amour",
   },
-  description:
-    "A modern table where Italian soul meets French finesse, in the heart of Paris. Reserve a table, explore the menu, and taste craft, tradition, and passion.",
+  description: seoConfig.description,
+  applicationName: seoConfig.name,
   generator: "Next.js",
-  metadataBase: new URL("https://amicietamour.fr"),
+  keywords: [...seoConfig.keywords],
+  authors: [{ name: seoConfig.legalName, url: SITE_URL }],
+  creator: seoConfig.legalName,
+  publisher: seoConfig.legalName,
+  category: "restaurant",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
-    icon: "/icon-32.png",
-    apple: "/icon-180.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Amici et Amour — Italian & French Fine Dining",
-    description: "Craft, tradition, and passion. Paris.",
     type: "website",
+    siteName: seoConfig.name,
+    title: "Amici et Amour — Italian & French Fine Dining in Paris",
+    description: seoConfig.description,
+    url: SITE_URL,
+    locale: seoConfig.locale,
+    alternateLocale: [...seoConfig.altLocales],
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: OG_IMAGE_ALT,
+        type: "image/png",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amici et Amour — Italian & French Fine Dining in Paris",
+    description: seoConfig.tagline + " A modern Paris table.",
+    images: [OG_IMAGE],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: { telephone: true, address: true, email: true },
 }
 
 export const viewport: Viewport = {
-  themeColor: "#FBFAF7",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FBFAF7" },
+    { media: "(prefers-color-scheme: dark)", color: "#1F3A2E" },
+  ],
   colorScheme: "light",
 }
 
@@ -60,6 +120,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased`}
       >
+        <JsonLd data={[restaurantSchema(), organizationSchema(), websiteSchema()]} />
         <Providers>{children}</Providers>
         <Analytics />
       </body>

@@ -7,6 +7,14 @@ import { Reveal } from "@/components/motion/reveal"
 import { Parallax } from "@/components/motion/parallax"
 import { EVENTS } from "@/lib/content"
 import { SITE } from "@/lib/site"
+import { JsonLd } from "@/components/structured-data"
+import { eventSchema, breadcrumbSchema } from "@/lib/seo"
+
+/** Best-effort ISO start dates for datable events (Paris time). */
+const EVENT_START: Record<string, string> = {
+  harvest: "2026-10-18T19:00:00+02:00",
+  cellar: "2026-11-02T18:30:00+01:00",
+}
 
 export function generateStaticParams() {
   return EVENTS.map((e) => ({ id: e.id }))
@@ -23,6 +31,14 @@ export async function generateMetadata({
   return {
     title: event.title,
     description: event.desc,
+    alternates: { canonical: `/event/${event.id}` },
+    openGraph: {
+      type: "article",
+      title: event.title,
+      description: event.desc,
+      url: `/event/${event.id}`,
+      images: [{ url: event.img, alt: event.title }],
+    },
   }
 }
 
@@ -44,6 +60,16 @@ export default async function EventDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          eventSchema(event, EVENT_START[event.id]),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Events", path: "/events" },
+            { name: event.title, path: `/event/${event.id}` },
+          ]),
+        ]}
+      />
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <Parallax speed={0.25} className="h-full w-full">

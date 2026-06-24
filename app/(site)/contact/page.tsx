@@ -4,16 +4,25 @@ import { PageHeader } from "@/components/page-header"
 import { Reveal } from "@/components/motion/reveal"
 import { ContactForm } from "@/components/contact/contact-form"
 import { SITE } from "@/lib/site"
+import { JsonLd } from "@/components/structured-data"
+import { breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Find Amici et Amour at 24 Rue de Castiglione, Paris. Call, write, or send us a note about reservations, private dining, and press.",
+  alternates: { canonical: "/contact" },
 }
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
       <PageHeader
         eyebrow="Contact · Nous Trouver"
         title={

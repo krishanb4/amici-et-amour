@@ -4,6 +4,16 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowUpRight } from "lucide-react"
 import { Reveal } from "@/components/motion/reveal"
 import { JOURNAL } from "@/lib/content"
+import { JsonLd } from "@/components/structured-data"
+import { articleSchema, breadcrumbSchema } from "@/lib/seo"
+
+/** ISO publish dates per article (mirrors the human-readable `date`). */
+const ARTICLE_DATE: Record<string, string> = {
+  negroni: "2026-06-12",
+  "olive-oil": "2026-05-28",
+  risotto: "2026-05-09",
+  bread: "2026-04-21",
+}
 
 export function generateStaticParams() {
   return JOURNAL.map((p) => ({ id: p.id }))
@@ -20,6 +30,14 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.id}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url: `/blog/${post.id}`,
+      images: [{ url: post.img, alt: post.title }],
+    },
   }
 }
 
@@ -40,6 +58,16 @@ export default async function BlogDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleSchema(post, ARTICLE_DATE[post.id]),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Journal", path: "/blogs" },
+            { name: post.title, path: `/blog/${post.id}` },
+          ]),
+        ]}
+      />
       <article className="container-edge pt-32 lg:pt-40">
         {/* Header */}
         <div className="mx-auto max-w-3xl">

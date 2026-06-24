@@ -8,16 +8,25 @@ import { Parallax } from "@/components/motion/parallax"
 import { SplitText } from "@/components/motion/split-text"
 import { VALUES, TIMELINE, STATS } from "@/lib/content"
 import { IMAGES } from "@/lib/images"
+import { JsonLd } from "@/components/structured-data"
+import { breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "Amici et Amour — Italian soul, French finesse. Fifteen years of honest food cooked with heart, in the heart of Paris.",
+  alternates: { canonical: "/about" },
 }
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
       <PageHeader
         eyebrow="About · Notre Maison"
         title={
