@@ -1,20 +1,53 @@
-import React from "react"
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type React from "react"
+import type { Metadata, Viewport } from "next"
+import { Playfair_Display, Inter, Geist_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import { Providers } from "@/components/providers"
+import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+})
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+})
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: 'Amici et Amour - Now Open',
-  description: 'Amici et Amour - An exceptional dining experience celebrating Italian and French cuisine. Now open.',
-  generator: 'v0.app',
-  icons: {
-    icon: '/icon-32.png',
-    apple: '/icon-180.png',
+  title: {
+    default: "Amici et Amour — Italian & French Fine Dining · Paris",
+    template: "%s · Amici et Amour",
   },
+  description:
+    "A modern table where Italian soul meets French finesse, in the heart of Paris. Reserve a table, explore the menu, and taste craft, tradition, and passion.",
+  generator: "Next.js",
+  metadataBase: new URL("https://amicietamour.fr"),
+  icons: {
+    icon: "/icon-32.png",
+    apple: "/icon-180.png",
+  },
+  openGraph: {
+    title: "Amici et Amour — Italian & French Fine Dining",
+    description: "Craft, tradition, and passion. Paris.",
+    type: "website",
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#FBFAF7",
+  colorScheme: "light",
 }
 
 export default function RootLayout({
@@ -23,9 +56,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased`}
+      >
+        <Providers>{children}</Providers>
         <Analytics />
       </body>
     </html>

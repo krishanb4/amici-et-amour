@@ -25,3 +25,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original full-res photo masters (web-optimized copies live in public/images/<category>)
+/_originals
+.DS_Store
