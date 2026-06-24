@@ -6,16 +6,38 @@ import { RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { Button } from "@/components/ui/button"
 import { EVENTS } from "@/lib/content"
 import { SITE } from "@/lib/site"
+import { JsonLd } from "@/components/structured-data"
+import { breadcrumbSchema, abs } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Events",
   description:
     "Gatherings worth the table — the Harvest Table, Cellar Sessions, and the Chef's Counter at Amici et Amour, Paris.",
+  alternates: { canonical: "/events" },
 }
 
 export default function EventsPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Events", path: "/events" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Events at Amici et Amour",
+            itemListElement: EVENTS.map((e, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: abs(`/event/${e.id}`),
+              name: e.title,
+            })),
+          },
+        ]}
+      />
       <PageHeader
         eyebrow="Events · Le Programme"
         title={

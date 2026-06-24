@@ -4,16 +4,29 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { MenuGallery } from "@/components/menu/menu-gallery"
 import { MENU_GROUPS, MENU_PHOTOS } from "@/lib/menu-images"
+import { MENU_CATEGORIES, SPECIALTIES } from "@/lib/content"
+import { JsonLd } from "@/components/structured-data"
+import { menuSchema, breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "The Menu",
   description:
     "A visual menu of Amici et Amour — antipasti, pasta and pizza, the grill, dolci, and the bar. Italian soul, French finesse, in Paris.",
+  alternates: { canonical: "/menu" },
 }
 
 export default function MenuPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          menuSchema([...MENU_CATEGORIES], [...SPECIALTIES]),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Menu", path: "/menu" },
+          ]),
+        ]}
+      />
       {/* Header */}
       <section className="container-edge pt-32 pb-12 lg:pt-40 lg:pb-16">
         <span className="eyebrow flex items-center gap-3">

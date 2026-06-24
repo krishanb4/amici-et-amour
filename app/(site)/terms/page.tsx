@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site"
 export const metadata: Metadata = {
   title: "Terms",
   description: "The terms under which Amici et Amour provides this website, reservations, and events.",
+  alternates: { canonical: "/terms" },
 }
 
 const SECTIONS: LegalSection[] = [

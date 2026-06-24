@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site"
 export const metadata: Metadata = {
   title: "Privacy",
   description: "How Amici et Amour collects, uses, and protects your personal information.",
+  alternates: { canonical: "/privacy" },
 }
 
 const SECTIONS: LegalSection[] = [
