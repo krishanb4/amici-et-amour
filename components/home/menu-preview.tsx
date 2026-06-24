@@ -38,7 +38,7 @@ export function MenuPreview() {
   }, [reduce])
 
   const panelBase =
-    "relative flex h-[64vh] min-h-[420px] shrink-0 flex-col justify-between rounded-sm border border-border bg-card p-8"
+    "group relative flex h-[64vh] min-h-[420px] shrink-0 flex-col justify-between overflow-hidden rounded-sm p-8 text-background"
 
   return (
     <section
@@ -73,32 +73,42 @@ export function MenuPreview() {
           </Button>
         </div>
 
-        {/* Category panels */}
+        {/* Category panels — each backed by a real dish photo */}
         {MENU_CATEGORIES.map((c) => (
-          <div
+          <Link
             key={c.id}
+            href="/menu"
             className={cn(panelBase, "w-[78vw] snap-center md:w-[34vw] lg:w-[26vw]")}
           >
-            <div className="flex items-start justify-between">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={c.img}
+              alt={c.name}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-ink/15"
+            />
+
+            <div className="relative flex items-start justify-between">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-background/75">
                 {c.count} dishes
               </span>
-              <span className="h-2 w-2 rounded-full bg-green" />
+              <span className="h-2 w-2 rounded-full bg-green-bright" />
             </div>
-            <div>
+            <div className="relative">
               <h3 className="font-display text-4xl font-medium leading-tight sm:text-5xl">
                 {c.name}
               </h3>
-              <p className="mt-3 text-sm text-muted-foreground">{c.note}</p>
+              <p className="mt-3 text-sm text-background/80">{c.note}</p>
             </div>
-            <Link
-              href="/menu"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-green"
-            >
+            <span className="relative inline-flex items-center gap-2 text-sm font-medium text-background">
               View {c.name}
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
+            </span>
+          </Link>
         ))}
 
         {/* Closing image panel */}

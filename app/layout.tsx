@@ -27,11 +27,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Amici et Amour — Italian & French Fine Dining · Abu Dhabi",
+    default: "Amici et Amour — Italian & French Fine Dining · Paris",
     template: "%s · Amici et Amour",
   },
   description:
-    "A modern table where Italian soul meets French finesse, in the heart of Abu Dhabi. Reserve a table, explore the menu, and taste craft, tradition, and passion.",
+    "A modern table where Italian soul meets French finesse, in the heart of Paris. Reserve a table, explore the menu, and taste craft, tradition, and passion.",
   generator: "Next.js",
   metadataBase: new URL("https://amicietamour.fr"),
   icons: {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Amici et Amour — Italian & French Fine Dining",
-    description: "Craft, tradition, and passion. Abu Dhabi.",
+    description: "Craft, tradition, and passion. Paris.",
     type: "website",
   },
 }

@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Pin the workspace root so Turbopack doesn't mis-infer it (it lives here).
+  turbopack: {
+    root: import.meta.dirname,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

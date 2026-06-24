@@ -11,10 +11,22 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { SITE } from "@/lib/site"
 import { IMAGES } from "@/lib/images"
+import { cn } from "@/lib/utils"
 
 const SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"]
 
-export function Reserve() {
+/**
+ * Reserve — the booking form + visit panel. Used as a home section (with its
+ * own heading) and on the dedicated /reservation page (heading hidden, since
+ * the PageHeader supplies it). Pass `className` to override section spacing.
+ */
+export function Reserve({
+  showHeading = true,
+  className,
+}: {
+  showHeading?: boolean
+  className?: string
+}) {
   const { t } = useLanguage()
   const [loading, setLoading] = useState(false)
 
@@ -33,30 +45,44 @@ export function Reserve() {
   }
 
   return (
-    <section className="container-edge py-28 lg:py-40">
+    <section className={cn("container-edge py-28 lg:py-40", className)}>
       <div className="grid grid-cols-1 overflow-hidden rounded-sm border border-border lg:grid-cols-[1.1fr_0.9fr]">
         {/* Form */}
         <div className="bg-card p-8 sm:p-12">
-          <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
-            Reservations
-          </span>
-          <SplitText
-            as="h2"
-            text="Reserve your table."
-            className="mt-5 font-display text-4xl font-normal leading-tight tracking-tight sm:text-5xl"
-          />
-          <p className="mt-4 max-w-md text-sm text-muted-foreground">
-            Tell us when, and for how many. We hold the room from 18:00, Monday to
-            Saturday.
-          </p>
+          {showHeading ? (
+            <>
+              <span className="eyebrow flex items-center gap-3">
+                <span className="h-px w-8 bg-green/50" />
+                Reservations
+              </span>
+              <SplitText
+                as="h2"
+                text="Reserve your table."
+                className="mt-5 font-display text-4xl font-normal leading-tight tracking-tight sm:text-5xl"
+              />
+              <p className="mt-4 max-w-md text-sm text-muted-foreground">
+                Tell us when, and for how many. We hold the room from 18:00, Monday to
+                Saturday.
+              </p>
+            </>
+          ) : (
+            <h2 className="font-display text-2xl font-medium sm:text-3xl">
+              Request a table
+            </h2>
+          )}
 
-          <form onSubmit={onSubmit} className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <form
+            onSubmit={onSubmit}
+            className={cn(
+              "grid grid-cols-1 gap-5 sm:grid-cols-2",
+              showHeading ? "mt-8" : "mt-6",
+            )}
+          >
             <Field label="Full name" htmlFor="name">
               <Input id="name" name="name" placeholder="Marco Vitale" required />
             </Field>
             <Field label="Phone" htmlFor="phone">
-              <Input id="phone" name="phone" type="tel" placeholder="+971 50 000 0000" />
+              <Input id="phone" name="phone" type="tel" placeholder="+33 6 00 00 00 00" />
             </Field>
             <Field label="Email" htmlFor="email">
               <Input id="email" name="email" type="email" placeholder="you@email.com" required />

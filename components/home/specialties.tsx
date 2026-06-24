@@ -74,7 +74,7 @@ export function Specialties() {
                 <div className="mt-5 flex items-baseline justify-between gap-4">
                   <h3 className="font-display text-2xl font-medium">{dish.name}</h3>
                   <span className="shrink-0 font-mono text-sm text-green">
-                    {SITE.currency} {dish.price}
+                    {dish.price} {SITE.currency}
                   </span>
                 </div>
                 <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-muted-foreground">

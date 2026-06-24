@@ -23,6 +23,10 @@ export const dictionaries = {
     "nav.reserve": "Reserve a Table",
     "nav.cart": "Cart",
 
+    "hero.location": "Paris",
+    "hero.lede":
+      "An intimate fine-dining room in the heart of Paris, plating craft, tradition, and a little romance onto every course.",
+
     "cta.explore_menu": "Explore Menu",
     "cta.read_story": "Read Our Story",
     "cta.view_all": "View All",
@@ -33,7 +37,7 @@ export const dictionaries = {
     "cta.learn_more": "Learn More",
 
     "footer.blurb":
-      "A cinematic journey through Italian and French cuisine in the heart of Abu Dhabi — where craft, tradition, and passion meet at the table.",
+      "A cinematic journey through Italian and French cuisine in the heart of Paris — where craft, tradition, and passion meet at the table.",
     "footer.quick_links": "Quick Links",
     "footer.hours": "Opening Hours",
     "footer.location": "Location",
@@ -65,6 +69,10 @@ export const dictionaries = {
     "nav.reserve": "Réserver une Table",
     "nav.cart": "Panier",
 
+    "hero.location": "Paris",
+    "hero.lede":
+      "Une salle intime au cœur de Paris, où l'art, la tradition et un soupçon de romance se déposent dans chaque assiette.",
+
     "cta.explore_menu": "Découvrir la Carte",
     "cta.read_story": "Notre Histoire",
     "cta.view_all": "Voir Tout",
@@ -75,7 +83,7 @@ export const dictionaries = {
     "cta.learn_more": "En Savoir Plus",
 
     "footer.blurb":
-      "Un voyage cinématographique à travers la cuisine italienne et française au cœur d'Abou Dabi — où l'art, la tradition et la passion se rencontrent à table.",
+      "Un voyage cinématographique à travers la cuisine italienne et française au cœur de Paris — où l'art, la tradition et la passion se rencontrent à table.",
     "footer.quick_links": "Liens Rapides",
     "footer.hours": "Heures d'Ouverture",
     "footer.location": "Adresse",

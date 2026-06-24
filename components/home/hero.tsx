@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import { ArrowRight } from "lucide-react"
@@ -20,6 +20,21 @@ export function Hero() {
   const reduce = useReducedMotion()
   const { t } = useLanguage()
   const ref = useRef<HTMLElement>(null)
+
+  // Only mount the WebGL layer when the browser can actually create a context —
+  // otherwise the static <img> below carries the hero (no thrown errors).
+  const [canWebGL, setCanWebGL] = useState(false)
+  useEffect(() => {
+    try {
+      const c = document.createElement("canvas")
+      setCanWebGL(
+        !!(c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl")),
+      )
+    } catch {
+      setCanWebGL(false)
+    }
+  }, [])
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -38,7 +53,7 @@ export function Hero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/hero.jpg"
-          alt="Signature plate at Amici et Amour"
+          alt="A table laid with Italian and French dishes at Amici et Amour"
           className="absolute inset-0 h-full w-full object-cover"
           fetchPriority="high"
         />
@@ -51,7 +66,7 @@ export function Hero() {
               "linear-gradient(90deg, var(--background) 0%, var(--background) 28%, transparent 62%), linear-gradient(180deg, var(--background) 0%, transparent 22%, transparent 84%, oklch(0.984 0.004 95 / 0.5) 100%)",
           }}
         />
-        {!reduce ? <HeroCanvas src="/hero.jpg" /> : null}
+        {!reduce && canWebGL ? <HeroCanvas src="/hero.jpg" /> : null}
       </motion.div>
 
       {/* Content */}
@@ -67,7 +82,7 @@ export function Hero() {
             className="eyebrow flex items-center gap-3"
           >
             <span className="h-px w-8 bg-green/50" />
-            {t("brand.tagline")} · Abu Dhabi
+            {t("brand.tagline")} · {t("hero.location")}
           </motion.span>
 
           <h1 className="mt-7 font-display text-[clamp(2.75rem,7vw,5.75rem)] font-normal leading-[0.98] tracking-[-0.02em]">
@@ -87,8 +102,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.55 }}
             className="mt-7 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            An intimate fine-dining room in Abu Dhabi, plating craft, tradition, and a
-            little romance onto every course.
+            {t("hero.lede")}
           </motion.p>
 
           <motion.div
