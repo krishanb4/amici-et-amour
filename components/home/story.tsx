@@ -42,7 +42,7 @@ export function Story() {
       <div className="order-1 lg:order-2">
         <Reveal>
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
+            <span className="h-px w-8 bg-green" />
             Our Culinary Story
           </span>
         </Reveal>

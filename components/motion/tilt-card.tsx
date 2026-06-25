@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { cn } from "@/lib/utils"
 
 /**
- * TiltCard — 3D perspective tilt that tracks the cursor, with a soft gold
+ * TiltCard — 3D perspective tilt that tracks the cursor, with a soft green
  * sheen that follows the pointer. Snaps flat on leave. Hover-pointers only.
  */
 export function TiltCard({

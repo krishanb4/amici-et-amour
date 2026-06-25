@@ -55,7 +55,7 @@ export function MenuPreview() {
         {/* Intro panel */}
         <div className="flex h-[64vh] min-h-[420px] w-[86vw] shrink-0 flex-col justify-center md:w-[40vw] lg:w-[34vw]">
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
+            <span className="h-px w-8 bg-green" />
             The Menu
           </span>
           <h2 className="mt-6 font-display text-4xl font-normal leading-[1.02] tracking-tight sm:text-6xl">

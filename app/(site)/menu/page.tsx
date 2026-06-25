@@ -30,7 +30,7 @@ export default function MenuPage() {
       {/* Header */}
       <section className="container-edge pt-32 pb-12 lg:pt-40 lg:pb-16">
         <span className="eyebrow flex items-center gap-3">
-          <span className="h-px w-8 bg-green/50" />
+          <span className="h-px w-8 bg-green" />
           The Menu · La Carte
         </span>
         <h1 className="mt-6 max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] font-normal leading-[0.98] tracking-[-0.02em]">

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/reveal"
 import { SplitText } from "@/components/motion/split-text"
 
 /**
- * SectionHeading — the consistent section intro: a gold eyebrow, a split-text
+ * SectionHeading — the consistent section intro: a green eyebrow, a split-text
  * display title, and an optional lead paragraph. Center or left aligned.
  */
 export function SectionHeading({
@@ -37,7 +37,7 @@ export function SectionHeading({
       {eyebrow ? (
         <Reveal direction="up">
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/40" aria-hidden />
+            <span className="h-px w-8 bg-green" aria-hidden />
             {eyebrow}
           </span>
         </Reveal>

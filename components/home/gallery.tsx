@@ -30,7 +30,7 @@ export function Gallery() {
       <div className="container-edge">
         <div className="max-w-2xl">
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
+            <span className="h-px w-8 bg-green" />
             The Gallery
           </span>
           <SplitText

@@ -1,0 +1,59 @@
+// Amici et Amour — booking system data model.
+// Database: Supabase Postgres. ORM: Prisma.
+//
+//   Apply schema:  pnpm db:push        (or: pnpm prisma migrate dev)
+//   Inspect data:  pnpm db:studio
+//   Seed an admin: pnpm create-admin
+//
+// Connection strings come from Supabase → Project Settings → Database:
+//   DATABASE_URL  → "Transaction" pooler (port 6543, ?pgbouncer=true)  — used at runtime
+//   DIRECT_URL    → "Session"/direct connection (port 5432)            — used for migrations
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// A reservation request. Always created as `pending`; the owner confirms or
+/// declines it from the admin panel.
+model Booking {
+  id        String        @id @default(uuid()) @db.Uuid
+  name      String
+  email     String
+  phone     String?
+  guests    Int           @default(2)
+  date      String // ISO date, e.g. "2026-07-04" (stored as text — timezone-safe)
+  time      String // e.g. "19:30"
+  occasion  String? // occasion / notes
+  status    BookingStatus @default(pending)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  @@index([date])
+  @@index([status])
+  @@index([createdAt])
+  @@map("bookings")
+}
+
+/// A staff member who can sign in to the admin panel. Seed with `pnpm create-admin`.
+model AdminUser {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  name         String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("admin_users")
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  declined
+  cancelled
+}

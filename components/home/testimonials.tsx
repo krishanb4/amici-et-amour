@@ -13,7 +13,7 @@ export function Testimonials() {
           {/* Featured guest quote */}
           <Reveal className="lg:col-span-7">
             <span className="eyebrow flex items-center gap-3">
-              <span className="h-px w-8 bg-green/50" />
+              <span className="h-px w-8 bg-green" />
               From Our Guests
             </span>
             <figure className="mt-8">
@@ -21,7 +21,7 @@ export function Testimonials() {
                 “{featured.quote}”
               </blockquote>
               <figcaption className="mt-8 flex items-center gap-4">
-                <span className="h-px w-10 bg-green/50" aria-hidden />
+                <span className="h-px w-10 bg-green" aria-hidden />
                 <span className="text-sm leading-snug">
                   <span className="font-medium text-foreground">{featured.name}</span>
                   <span className="block text-muted-foreground">{featured.detail}</span>

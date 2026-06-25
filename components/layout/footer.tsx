@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react"
+import { Instagram, Facebook, MapPin, Phone, MessageCircle, Mail } from "lucide-react"
 import { NAV_LINKS, SITE } from "@/lib/site"
 import { useLanguage } from "@/components/language-provider"
 import { Reveal } from "@/components/motion/reveal"
@@ -30,10 +30,13 @@ export function Footer() {
         {/* Columns */}
         <div className="grid grid-cols-2 gap-10 py-16 md:grid-cols-4 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
           <Reveal className="col-span-2 md:col-span-4 lg:col-span-1">
-            <span className="font-display text-3xl font-medium">
-              Amici <span className="italic text-green">et</span> Amour
-            </span>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/amici-et-amour-logo.png"
+              alt={SITE.name}
+              className="h-24 w-auto sm:h-28"
+            />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
               {t("footer.blurb")}
             </p>
           </Reveal>
@@ -107,6 +110,17 @@ export function Footer() {
                 >
                   <Phone className="size-4 shrink-0 text-green" strokeWidth={1.5} />
                   {SITE.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2.5 transition-colors hover:text-green"
+                >
+                  <MessageCircle className="size-4 shrink-0 text-green" strokeWidth={1.5} />
+                  WhatsApp
                 </a>
               </li>
               <li>

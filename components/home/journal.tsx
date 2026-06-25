@@ -14,7 +14,7 @@ export function Journal() {
       <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
         <div>
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
+            <span className="h-px w-8 bg-green" />
             The Journal
           </span>
           <SplitText
