@@ -65,7 +65,7 @@ export default function BlogsPage() {
               <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-green">
                   {featured.category}
-                  <span className="h-px w-6 bg-green/40" />
+                  <span className="h-px w-6 bg-green" />
                   <span className="text-muted-foreground">{featured.readTime}</span>
                 </div>
                 <h2 className="mt-4 font-display text-3xl font-medium leading-snug sm:text-4xl lg:text-5xl">

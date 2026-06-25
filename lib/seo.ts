@@ -35,7 +35,7 @@ export const seoConfig = {
   altLocales: ["fr_FR"],
   cuisines: ["Italian", "French", "Mediterranean"],
   priceRange: "€€€€",
-  geo: { latitude: 48.86653, longitude: 2.32702 },
+  geo: { latitude: 48.82371, longitude: 2.20951 },
   // Mon–Sat 11:00–23:00, Sun closed (mirrors /contact).
   hours: [{ days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "11:00", closes: "23:00" }],
   rating: { value: "4.8", count: "2300" },
@@ -44,8 +44,8 @@ export const seoConfig = {
     "Italian restaurant Paris",
     "French restaurant Paris",
     "fine dining Paris",
-    "restaurant Rue de Castiglione",
-    "Paris 1er restaurant",
+    "restaurant Sèvres",
+    "restaurant Grande Rue Sèvres",
     "Italian French cuisine Paris",
     "pasta Paris",
     "wine bar Paris",
@@ -77,8 +77,9 @@ export function restaurantSchema() {
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.line1,
-      addressLocality: "Paris",
-      postalCode: "75001",
+      addressLocality: "Sèvres",
+      addressRegion: "Île-de-France",
+      postalCode: "92310",
       addressCountry: "FR",
     },
     geo: {
@@ -217,8 +218,9 @@ export function eventSchema(e: EventInput, startDate?: string) {
       address: {
         "@type": "PostalAddress",
         streetAddress: SITE.address.line1,
-        addressLocality: "Paris",
-        postalCode: "75001",
+        addressLocality: "Sèvres",
+        addressRegion: "Île-de-France",
+        postalCode: "92310",
         addressCountry: "FR",
       },
     },

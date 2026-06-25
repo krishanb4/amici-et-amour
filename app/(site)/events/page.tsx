@@ -115,7 +115,7 @@ export default function EventsPage() {
         <div className="container-edge flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <div className="max-w-xl">
             <span className="eyebrow flex items-center gap-3">
-              <span className="h-px w-8 bg-green/50" />
+              <span className="h-px w-8 bg-green" />
               Private Dining
             </span>
             <h2 className="mt-5 font-display text-3xl font-normal leading-tight tracking-tight sm:text-4xl">

@@ -64,7 +64,7 @@ export default function AboutPage() {
 
         <div className="order-1 lg:order-2">
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
+            <span className="h-px w-8 bg-green" />
             Our Belief
           </span>
           <SplitText
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="container-edge">
           <div className="max-w-2xl">
             <span className="eyebrow flex items-center gap-3">
-              <span className="h-px w-8 bg-green/50" />
+              <span className="h-px w-8 bg-green" />
               How We Cook
             </span>
             <SplitText
@@ -151,7 +151,7 @@ export default function AboutPage() {
       <section className="container-edge pb-28 lg:pb-40">
         <div className="max-w-2xl">
           <span className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-green/50" />
+            <span className="h-px w-8 bg-green" />
             The Long Way Here
           </span>
           <SplitText
@@ -194,7 +194,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent" />
             <div className="absolute inset-0 flex items-end">
               <p className="container-edge pb-10 font-display text-2xl text-background sm:text-3xl">
-                24 Rue de Castiglione · <span className="italic">come hungry.</span>
+                1 Grande Rue, Sèvres · <span className="italic">come hungry.</span>
               </p>
             </div>
           </div>

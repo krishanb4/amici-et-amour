@@ -14,14 +14,16 @@ export const NAV_LINKS: { href: string; key: DictKey }[] = [
 export const SITE = {
   name: "Amici et Amour",
   email: "contact@amicietamour.fr",
-  phone: "+33 1 42 60 38 30",
-  phoneHref: "tel:+33142603830",
+  phone: "+33 6 16 14 48 48",
+  phoneHref: "tel:+33616144848",
+  whatsapp: "+33 6 16 14 48 48",
+  whatsappHref: "https://wa.me/33616144848",
   address: {
-    line1: "24 Rue de Castiglione",
-    line2: "75001 Paris, France",
-    mapsUrl: "https://maps.google.com/?q=24+Rue+de+Castiglione+75001+Paris",
+    line1: "1 Grande Rue",
+    line2: "92310 Sèvres, France",
+    mapsUrl: "https://maps.google.com/?q=1+Grande+Rue+92310+S%C3%A8vres",
   },
-  city: "Paris",
+  city: "Sèvres",
   currency: "€",
   social: {
     instagram: "https://instagram.com",

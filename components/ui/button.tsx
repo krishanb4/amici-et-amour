@@ -15,8 +15,8 @@ const buttonVariants = cva(
         // ink outline
         outline:
           "border border-foreground/25 bg-transparent text-foreground hover:border-foreground hover:bg-foreground hover:text-background",
-        // green hairline outline
-        line: "border border-green/40 bg-transparent text-green hover:bg-green hover:text-primary-foreground",
+        // green hairline outline — fills to green with light text
+        line: "border border-green/60 bg-transparent text-green-deep hover:bg-green hover:text-primary-foreground",
         secondary: "bg-secondary text-secondary-foreground hover:bg-bone",
         ghost: "hover:bg-secondary hover:text-foreground",
         link: "text-green underline-offset-4 hover:underline",

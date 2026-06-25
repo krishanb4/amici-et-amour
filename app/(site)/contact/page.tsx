@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from "lucide-react"
+import { MapPin, Phone, MessageCircle, Mail, Clock, Instagram, Facebook } from "lucide-react"
 import { PageHeader } from "@/components/page-header"
 import { Reveal } from "@/components/motion/reveal"
 import { ContactForm } from "@/components/contact/contact-form"
@@ -10,7 +10,7 @@ import { breadcrumbSchema } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Find Amici et Amour at 24 Rue de Castiglione, Paris. Call, write, or send us a note about reservations, private dining, and press.",
+    "Find Amici et Amour at 1 Grande Rue, Sèvres. Call, message us on WhatsApp, or send a note about reservations, private dining, and press.",
   alternates: { canonical: "/contact" },
 }
 
@@ -69,6 +69,17 @@ export default function ContactPage() {
                     >
                       <Phone className="size-4 shrink-0 text-green" strokeWidth={1.5} />
                       {SITE.phone}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={SITE.whatsappHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2.5 text-foreground transition-colors hover:text-green"
+                    >
+                      <MessageCircle className="size-4 shrink-0 text-green" strokeWidth={1.5} />
+                      WhatsApp
                     </a>
                   </li>
                   <li>

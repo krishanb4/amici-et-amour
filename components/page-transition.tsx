@@ -28,7 +28,7 @@ function FrozenRouter({ children }: { children: React.ReactNode }) {
 
 /**
  * Subtle cinematic page transition keyed on pathname. A soft fade + lift,
- * paired with a thin gold sweep curtain on exit. Reduced-motion safe via CSS.
+ * paired with a thin green sweep curtain on exit. Reduced-motion safe via CSS.
  */
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()

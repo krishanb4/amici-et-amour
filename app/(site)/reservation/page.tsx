@@ -3,13 +3,14 @@ import { PageHeader } from "@/components/page-header"
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal"
 import { Reserve } from "@/components/home/reserve"
 import { RESERVATION_NOTES } from "@/lib/content"
+import { SITE } from "@/lib/site"
 import { JsonLd } from "@/components/structured-data"
 import { faqSchema, breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Reservations",
   description:
-    "Reserve a table at Amici et Amour, 24 Rue de Castiglione, Paris. We hold the room from 18:00, Monday to Saturday.",
+    "Reserve a table at Amici et Amour, 1 Grande Rue, Sèvres. We hold the room from 18:00, Monday to Saturday.",
   alternates: { canonical: "/reservation" },
 }
 
@@ -18,7 +19,7 @@ const RESERVATION_FAQS = [
   {
     question: "Where is Amici et Amour located?",
     answer:
-      "Amici et Amour is at 24 Rue de Castiglione, 75001 Paris, France, in the 1st arrondissement near the Tuileries and Place Vendôme.",
+      "Amici et Amour is at 1 Grande Rue, 92310 Sèvres, France, in the Hauts-de-Seine just southwest of Paris, near the Parc de Saint-Cloud and the Sèvres porcelain manufactory.",
   },
   {
     question: "What are the opening hours?",
@@ -32,7 +33,7 @@ const RESERVATION_FAQS = [
   {
     question: "How do I make a reservation?",
     answer:
-      "Book directly through the reservation form on this page, or call +33 1 42 60 38 30. We confirm by email, usually within the hour during service.",
+      `Book directly through the reservation form on this page, or call or WhatsApp us on ${SITE.phone}. We confirm by email, usually within the hour during service.`,
   },
   ...RESERVATION_NOTES.map((n) => ({ question: n.title, answer: n.desc })),
 ]
@@ -67,7 +68,7 @@ export default function ReservationPage() {
         <div className="container-edge">
           <div className="max-w-2xl">
             <span className="eyebrow flex items-center gap-3">
-              <span className="h-px w-8 bg-green/50" />
+              <span className="h-px w-8 bg-green" />
               Good to know
             </span>
             <h2 className="mt-5 font-display text-3xl font-normal leading-tight tracking-tight sm:text-4xl">

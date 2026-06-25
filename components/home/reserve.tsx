@@ -32,17 +32,50 @@ export function Reserve({
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    if (!data.get("name") || !data.get("email")) {
+    const form = e.currentTarget
+    const data = new FormData(form)
+
+    const payload = {
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      guests: Number(data.get("guests") ?? 2),
+      date: String(data.get("date") ?? ""),
+      time: String(data.get("slot") ?? ""),
+      occasion: String(data.get("occasion") ?? "").trim(),
+    }
+
+    if (!payload.name || !payload.email) {
       toast.error("Please add your name and email.")
       return
     }
+    if (!payload.date) {
+      toast.error("Please choose a date.")
+      return
+    }
+
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 700)) // Brevo wiring lands in Phase 3
-    setLoading(false)
-    toast.success("Request received. We'll confirm your table by email shortly.")
-    e.currentTarget.reset()
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      const result = (await res.json().catch(() => ({}))) as { error?: string }
+      if (!res.ok) {
+        toast.error(result.error ?? "Something went wrong. Please try again or call us.")
+        return
+      }
+      toast.success("Request received. We'll confirm your table by email shortly.")
+      form.reset()
+    } catch {
+      toast.error("Network error. Please try again or call us.")
+    } finally {
+      setLoading(false)
+    }
   }
+
+  const today = new Date().toISOString().slice(0, 10)
 
   return (
     <section className={cn("container-edge py-28 lg:py-40", className)}>
@@ -52,7 +85,7 @@ export function Reserve({
           {showHeading ? (
             <>
               <span className="eyebrow flex items-center gap-3">
-                <span className="h-px w-8 bg-green/50" />
+                <span className="h-px w-8 bg-green" />
                 Reservations
               </span>
               <SplitText
@@ -91,7 +124,7 @@ export function Reserve({
               <Input id="guests" name="guests" type="number" min={1} max={20} defaultValue={2} />
             </Field>
             <Field label="Date" htmlFor="date">
-              <Input id="date" name="date" type="date" />
+              <Input id="date" name="date" type="date" min={today} required />
             </Field>
             <Field label="Time" htmlFor="slot">
               <select
@@ -133,7 +166,7 @@ export function Reserve({
           <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/10" />
           <div className="relative flex h-full flex-col justify-end gap-6 p-8 text-background sm:p-12">
             <span className="font-display text-3xl">
-              Amici <span className="italic">et</span> Amour
+              Amici <span className="italic text-green-bright">et</span> Amour
             </span>
             <ul className="flex flex-col gap-4 text-sm">
               <li className="flex items-start gap-3">

@@ -27,7 +27,7 @@ export function PageHeader({
     <section className={cn("container-edge pt-32 pb-12 lg:pt-40 lg:pb-16", className)}>
       <Reveal>
         <span className="eyebrow flex items-center gap-3">
-          <span className="h-px w-8 bg-green/50" />
+          <span className="h-px w-8 bg-green" />
           {eyebrow}
         </span>
       </Reveal>

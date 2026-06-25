@@ -21,7 +21,6 @@ export const dictionaries = {
     "nav.journal": "Journal",
     "nav.contact": "Contact",
     "nav.reserve": "Reserve a Table",
-    "nav.cart": "Cart",
 
     "hero.location": "Paris",
     "hero.lede":
@@ -67,7 +66,6 @@ export const dictionaries = {
     "nav.journal": "Journal",
     "nav.contact": "Contact",
     "nav.reserve": "Réserver une Table",
-    "nav.cart": "Panier",
 
     "hero.location": "Paris",
     "hero.lede":

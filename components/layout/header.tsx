@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Magnetic } from "@/components/motion/magnetic"
 import { LanguageToggle } from "@/components/layout/language-toggle"
-import { CartButton } from "@/components/layout/cart-button"
 
 export function Header() {
   const { t } = useLanguage()
@@ -36,7 +35,7 @@ export function Header() {
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500",
         scrolled
           ? "border-b border-border bg-background/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
+          : "border-b border-transparent bg-gradient-to-b from-foreground/60 via-foreground/20 to-transparent",
       )}
     >
       <nav className="container-edge flex h-[72px] items-center justify-between gap-6">
@@ -46,8 +45,17 @@ export function Header() {
           className="group flex shrink-0 items-baseline gap-2"
           aria-label={t("brand.name")}
         >
-          <span className="font-display text-[1.6rem] leading-none font-medium tracking-tight text-foreground">
-            Amici <span className="font-display italic text-green">et</span> Amour
+          <span
+            className={cn(
+              "font-display text-[1.6rem] leading-none font-medium tracking-tight transition-colors",
+              scrolled ? "text-foreground" : "text-background",
+            )}
+          >
+            Amici{" "}
+            <span className={cn("font-display italic", scrolled ? "text-green" : "text-green-bright")}>
+              et
+            </span>{" "}
+            Amour
           </span>
         </Link>
 
@@ -60,14 +68,19 @@ export function Header() {
                 className={cn(
                   "group relative text-[0.82rem] uppercase tracking-[0.14em] transition-colors",
                   isActive(link.href)
-                    ? "text-green"
-                    : "text-foreground/70 hover:text-foreground",
+                    ? scrolled
+                      ? "text-green"
+                      : "text-green-bright"
+                    : scrolled
+                      ? "text-foreground/70 hover:text-foreground"
+                      : "text-background/80 hover:text-background",
                 )}
               >
                 {t(link.key)}
                 <span
                   className={cn(
-                    "absolute -bottom-1.5 left-0 h-px bg-green transition-all duration-300",
+                    "absolute -bottom-1.5 left-0 h-px transition-all duration-300",
+                    scrolled ? "bg-green" : "bg-green-bright",
                     isActive(link.href) ? "w-full" : "w-0 group-hover:w-full",
                   )}
                 />
@@ -79,7 +92,6 @@ export function Header() {
         {/* Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageToggle className="hidden sm:inline-flex" />
-          <CartButton />
           <Magnetic className="hidden md:inline-flex" strength={0.25}>
             <Button asChild size="pill">
               <Link href="/reservation">{t("nav.reserve")}</Link>
@@ -89,7 +101,15 @@ export function Header() {
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn(
+                  "lg:hidden transition-colors",
+                  scrolled ? "text-foreground" : "text-background hover:text-background",
+                )}
+                aria-label="Open menu"
+              >
                 <Menu className="size-5" strokeWidth={1.5} />
               </Button>
             </SheetTrigger>
