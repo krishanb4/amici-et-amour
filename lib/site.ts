@@ -26,8 +26,8 @@ export const SITE = {
   city: "Sèvres",
   currency: "€",
   social: {
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
+    instagram: "https://www.instagram.com/amicietamour",
+    facebook: "https://www.facebook.com/share/182zkpFWAM/",
     tiktok: "https://tiktok.com",
   },
 } as const
