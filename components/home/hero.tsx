@@ -12,7 +12,7 @@ import { SITE } from "@/lib/site"
 
 // Full-bleed combined hero shot — pizza, cocktails & small plates in the bright
 // foreground with the Eiffel-lit bar behind.
-const HERO_IMAGE = "/images/hero-image.png"
+const HERO_IMAGE = "https://pub-d1a6578f4c844ef1a5b8769c356fec0f.r2.dev/hero-image-new.jpg"
 
 export function Hero() {
   const reduce = useReducedMotion()
