@@ -38,8 +38,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Amici et Amour — Italian & French Fine Dining · Paris",
-    template: "%s · Amici et Amour",
+    default: "Amici et Amour — Pizzeria & Restaurant Italien à Sèvres",
+    template: "%s · Amici et Amour — Pizzeria à Sèvres",
   },
   description: seoConfig.description,
   applicationName: seoConfig.name,
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: seoConfig.name,
-    title: "Amici et Amour — Italian & French Fine Dining in Paris",
+    title: "Amici et Amour — Pizzeria & Restaurant Italien à Sèvres",
     description: seoConfig.description,
     url: SITE_URL,
     locale: seoConfig.locale,
@@ -84,8 +84,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amici et Amour — Italian & French Fine Dining in Paris",
-    description: seoConfig.tagline + " A modern Paris table.",
+    title: "Amici et Amour — Pizzeria & Restaurant Italien à Sèvres",
+    description:
+      "Pizzas au feu de bois, cuisine italienne et bar à Sèvres. On diffuse les matchs. Réservez votre table.",
     images: [OG_IMAGE],
   },
   robots: {
@@ -116,7 +117,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased`}
       >

@@ -8,9 +8,9 @@ import { JsonLd } from "@/components/structured-data"
 import { breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact & Accès",
   description:
-    "Find Amici et Amour at 1 Grande Rue, Sèvres. Call, message us on WhatsApp, or send a note about reservations, private dining, and press.",
+    "Amici et Amour, pizzeria et restaurant italien au 1 Grande Rue, 92310 Sèvres. Appelez-nous, écrivez sur WhatsApp ou laissez un message — réservations, privatisations et presse.",
   alternates: { canonical: "/contact" },
 }
 

@@ -26,15 +26,18 @@ export const IMAGES = {
   story: main("3D1A4730"),
   storyDetail: main("3D1A4748"),
 
-  // Signature plates (paired with names in lib/content.ts)
+  // Signature plates (paired with names in lib/content.ts).
+  // Mix of the original shoot and the new batch — gamberi & pizza refreshed
+  // with new shots that match their dish exactly (prawns in San Marzano, diavola).
   specialties: [
     { id: "tartufo", img: main("3D1A4736") },
-    { id: "gamberi", img: main("3D1A4731") },
-    { id: "pizza", img: main("3D1A4707") },
+    { id: "gamberi", img: main("IMG_8728") },
+    { id: "pizza", img: main("IMG_8755") },
     { id: "tiramisu", img: dessert("3D1A4773") },
   ],
 
-  menuPreview: ambiance("3D1A4708"),
+  // New overhead spread of several plates — a fuller look at the table.
+  menuPreview: ambiance("IMG_8703"),
 
   // Events happen in the room itself — bar, cellar shelves, the rail.
   events: [
@@ -50,28 +53,39 @@ export const IMAGES = {
     { id: "bread", img: main("3D1A4751") },
   ],
 
-  // Visual-feast marquee on the home page — the table AND the room (two rows)
+  // Visual-feast marquee on the home page — the table AND the room (two rows).
+  // Original shoot and the new batch alternated so both read as one collection:
+  // rooms & cocktails (only in the original set) carry the variety, new plates
+  // and the hands-on "served" shots bring the food up to date.
   gallery: [
-    main("3D1A4707"),
+    starter("IMG_8636"),
     room("bar-front"),
-    main("3D1A4731"),
-    dessert("3D1A4773"),
-    room("crest"),
+    main("IMG_8755"),
     drink("3D1A4802"),
     starter("3D1A4694"),
+    main("IMG_8728"),
+    room("crest"),
+    dessert("IMG_8793"),
+    main("3D1A4731"),
+    starter("IMG_8657"),
     room("booth"),
-    main("3D1A4751"),
+    main("IMG_8776"),
     drink("3D1A4816"),
+    dessert("IMG_8810"),
+    main("3D1A4751"),
+    starter("IMG_8722"),
     room("lamp"),
-    main("3D1A4726"),
+    main("IMG_8758"),
     dessert("3D1A4778"),
+    main("IMG_8712"),
     room("room-blue"),
-    main("3D1A4730"),
+    starter("IMG_8678"),
     drink("3D1A4790"),
+    main("IMG_8651"),
     room("booth-2"),
-    starter("3D1A4700"),
+    dessert("IMG_8821"),
     main("3D1A4736"),
-    main("3D1A4724"),
+    starter("IMG_8671"),
   ],
 
   // The visit panel (reserve + /about) — the bar in full

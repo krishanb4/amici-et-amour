@@ -18,7 +18,7 @@ export const OG_IMAGE =
   process.env.NEXT_PUBLIC_OG_IMAGE_URL?.trim() || `${SITE_URL}/og-image.png`
 
 export const OG_IMAGE_ALT =
-  "Amici et Amour — Italian & French fine dining in Paris"
+  "Amici et Amour — Pizzeria & restaurant italien à Sèvres"
 
 /** Absolute URL helper. */
 export const abs = (path = "/") =>
@@ -29,27 +29,46 @@ export const seoConfig = {
   shortName: "Amici",
   legalName: "Amici et Amour",
   description:
-    "A modern table where Italian soul meets French finesse, in the heart of Paris. Reserve a table, explore the menu, and taste craft, tradition, and passion.",
-  tagline: "Italian soul, French finesse.",
-  locale: "en_US",
-  altLocales: ["fr_FR"],
-  cuisines: ["Italian", "French", "Mediterranean"],
-  priceRange: "€€€€",
+    "Pizzeria et restaurant italien à Sèvres (92310) : pizzas au feu de bois, pâtes fraîches, antipasti et bar. On diffuse les grands matchs sur écran. À deux pas de Boulogne-Billancourt et du sud-ouest de Paris — réservez votre table.",
+  tagline: "Pizzeria, cuisine italienne & sport à Sèvres.",
+  locale: "fr_FR",
+  altLocales: ["en_US"],
+  // Lead with the terms people actually search (pizza, pizzeria, italien).
+  cuisines: ["Pizza", "Italian", "Mediterranean"],
+  // €€ — neighbourhood pizzeria / trattoria, not fine dining.
+  priceRange: "€€",
   geo: { latitude: 48.82371, longitude: 2.20951 },
   // Mon–Sat 11:00–23:00, Sun closed (mirrors /contact).
   hours: [{ days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "11:00", closes: "23:00" }],
   rating: { value: "4.8", count: "2300" },
+  // French local intent, ordered by the site's real top search queries.
   keywords: [
     "Amici et Amour",
-    "Italian restaurant Paris",
-    "French restaurant Paris",
-    "fine dining Paris",
+    "pizzeria Sèvres",
+    "pizza Sèvres",
+    "restaurant italien Sèvres",
     "restaurant Sèvres",
+    "pizzeria 92310",
+    "trattoria Sèvres",
+    "bar Sèvres",
+    "sports bar Sèvres",
+    "bar sportif Sèvres",
+    "où manger à Sèvres",
     "restaurant Grande Rue Sèvres",
-    "Italian French cuisine Paris",
-    "pasta Paris",
-    "wine bar Paris",
-    "private dining Paris",
+    "restaurant italien Hauts-de-Seine",
+    "pizza Boulogne-Billancourt",
+  ],
+  // Local catchment — strengthens "near me" / nearby-town relevance.
+  areaServed: [
+    "Sèvres",
+    "Boulogne-Billancourt",
+    "Ville-d'Avray",
+    "Chaville",
+    "Meudon",
+    "Saint-Cloud",
+    "Issy-les-Moulineaux",
+    "Paris 15e",
+    "Paris 16e",
   ],
 } as const
 
@@ -59,10 +78,16 @@ const sameAs = [SITE.social.instagram, SITE.social.facebook, SITE.social.tiktok]
 export function restaurantSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
+    // Restaurant + BarOrPub: it's a pizzeria/Italian table AND a bar that
+    // screens live sport — both types help the right queries resolve here.
+    "@type": ["Restaurant", "BarOrPub"],
     "@id": `${SITE_URL}/#restaurant`,
     name: seoConfig.name,
+    alternateName: "Amici et Amour Sèvres — Pizzeria & Restaurant Italien",
     description: seoConfig.description,
+    slogan: seoConfig.tagline,
+    keywords:
+      "pizzeria Sèvres, pizza Sèvres, restaurant italien Sèvres, bar sportif Sèvres, trattoria",
     url: SITE_URL,
     telephone: SITE.phone,
     email: SITE.email,
@@ -74,6 +99,12 @@ export function restaurantSchema() {
     paymentAccepted: "Cash, Credit Card",
     acceptsReservations: abs("/reservation"),
     hasMenu: abs("/menu"),
+    areaServed: seoConfig.areaServed.map((name) => ({ "@type": "City", name })),
+    amenityFeature: [
+      { "@type": "LocationFeatureSpecification", name: "Diffusion des matchs en direct", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Pizzas au feu de bois", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Bar / cocktails", value: true },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.line1,
@@ -128,7 +159,7 @@ export function websiteSchema() {
     "@id": `${SITE_URL}/#website`,
     name: seoConfig.name,
     url: SITE_URL,
-    inLanguage: "en",
+    inLanguage: "fr",
     publisher: { "@id": `${SITE_URL}/#organization` },
   }
 }
@@ -170,7 +201,7 @@ export function menuSchema(sections: MenuSection[], featured: MenuItem[]) {
     "@id": `${SITE_URL}/menu#menu`,
     name: "Amici et Amour — La Carte",
     url: abs("/menu"),
-    inLanguage: "en",
+    inLanguage: "fr",
     provider: { "@id": `${SITE_URL}/#restaurant` },
     hasMenuSection: sections.map((s) => ({
       "@type": "MenuSection",
@@ -200,8 +231,28 @@ type EventInput = {
   img: string
 }
 
-/** schema.org Event (a hosted dining event). `startDate` is best-effort ISO. */
-export function eventSchema(e: EventInput, startDate?: string) {
+type EventDates = {
+  /** ISO 8601 start, Paris time (best-effort). */
+  start?: string
+  /** ISO 8601 end, Paris time (best-effort). */
+  end?: string
+  /** ISO 8601 datetime the booking offer became valid. */
+  validFrom?: string
+}
+
+/**
+ * Booking offers for our events have been open since the start of the year —
+ * a sensible default `validFrom` so the Offer is always dated for rich results.
+ */
+const EVENT_OFFER_VALID_FROM = "2026-01-06T10:00:00+01:00"
+
+/**
+ * schema.org Event (a hosted dining event). Dates are best-effort ISO.
+ * Always emits `performer` and `offers.validFrom`; `startDate`/`endDate`
+ * are included when known.
+ */
+export function eventSchema(e: EventInput, dates: EventDates = {}) {
+  const { start, end, validFrom } = dates
   return {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -209,7 +260,8 @@ export function eventSchema(e: EventInput, startDate?: string) {
     description: e.desc,
     url: abs(`/event/${e.id}`),
     image: abs(e.img),
-    ...(startDate ? { startDate } : {}),
+    ...(start ? { startDate: start } : {}),
+    ...(end ? { endDate: end } : {}),
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: {
@@ -225,12 +277,15 @@ export function eventSchema(e: EventInput, startDate?: string) {
       },
     },
     organizer: { "@type": "Organization", name: seoConfig.name, url: SITE_URL },
+    // The kitchen brigade hosts and runs these evenings — the event's performer.
+    performer: { "@type": "PerformingGroup", name: `${seoConfig.name} — la brigade` },
     offers: {
       "@type": "Offer",
       price: e.price,
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
       url: abs("/reservation"),
+      validFrom: validFrom ?? EVENT_OFFER_VALID_FROM,
     },
   }
 }
@@ -259,6 +314,6 @@ export function articleSchema(a: ArticleInput, isoDate?: string) {
     author: { "@type": "Person", name: a.author },
     publisher: { "@id": `${SITE_URL}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": abs(`/blog/${a.id}`) },
-    inLanguage: "en",
+    inLanguage: "fr",
   }
 }

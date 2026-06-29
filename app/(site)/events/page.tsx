@@ -10,9 +10,9 @@ import { JsonLd } from "@/components/structured-data"
 import { breadcrumbSchema, abs } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Events",
+  title: "Événements & Soirées",
   description:
-    "Gatherings worth the table — the Harvest Table, Cellar Sessions, and the Chef's Counter at Amici et Amour, Paris.",
+    "Les rendez-vous d'Amici et Amour à Sèvres — soirées à thème, retransmissions des grands matchs et tables d'hôtes. Réservez votre place.",
   alternates: { canonical: "/events" },
 }
 

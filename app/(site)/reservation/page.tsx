@@ -8,32 +8,42 @@ import { JsonLd } from "@/components/structured-data"
 import { faqSchema, breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Reservations",
+  title: "Réserver une table",
   description:
-    "Reserve a table at Amici et Amour, 1 Grande Rue, Sèvres. We hold the room from 18:00, Monday to Saturday.",
+    "Réservez votre table chez Amici et Amour, 1 Grande Rue, 92310 Sèvres. Pizzeria et restaurant italien, du lundi au samedi de 11h00 à 23h00.",
   alternates: { canonical: "/reservation" },
 }
 
-/** Common booking questions — surfaced to AI answer engines via FAQ schema. */
+/** Questions fréquentes — exposées aux moteurs de réponse (IA) via le schema FAQ. */
 const RESERVATION_FAQS = [
   {
-    question: "Where is Amici et Amour located?",
+    question: "Où se trouve Amici et Amour ?",
     answer:
-      "Amici et Amour is at 1 Grande Rue, 92310 Sèvres, France, in the Hauts-de-Seine just southwest of Paris, near the Parc de Saint-Cloud and the Sèvres porcelain manufactory.",
+      "Amici et Amour se trouve au 1 Grande Rue, 92310 Sèvres, dans les Hauts-de-Seine, juste au sud-ouest de Paris — à quelques minutes de Boulogne-Billancourt, Ville-d'Avray et Saint-Cloud, près du parc de Saint-Cloud et de la manufacture de Sèvres.",
   },
   {
-    question: "What are the opening hours?",
-    answer: "We serve Monday to Saturday, 11:00–23:00. We are closed on Sundays.",
+    question: "Quel type de restaurant est Amici et Amour ?",
+    answer:
+      "Une pizzeria et un restaurant italien à Sèvres, doublé d'un bar : pizzas au feu de bois à pâte maturée, pâtes fraîches, antipasti, grillades et dolci maison.",
   },
   {
-    question: "What kind of cuisine does Amici et Amour serve?",
+    question: "Faites-vous des pizzas ?",
     answer:
-      "A modern menu where Italian soul meets French finesse — handmade pasta, wood-fired pizza, grill, seafood, dolci, and a low-intervention wine cellar.",
+      "Oui — la pizza est notre spécialité. Pizzas au feu de bois sur une pâte longuement maturée, avec des produits italiens. À déguster sur place au restaurant ou au bar.",
   },
   {
-    question: "How do I make a reservation?",
+    question: "Diffusez-vous les matchs de foot et de rugby ?",
     answer:
-      `Book directly through the reservation form on this page, or call or WhatsApp us on ${SITE.phone}. We confirm by email, usually within the hour during service.`,
+      "Oui, notre bar retransmet les grands matchs en direct sur écran (football, rugby et grands événements sportifs), avec une carte de pizzas, planches, cocktails et bières.",
+  },
+  {
+    question: "Quels sont les horaires d'ouverture ?",
+    answer: "Nous sommes ouverts du lundi au samedi, de 11h00 à 23h00. Fermé le dimanche.",
+  },
+  {
+    question: "Comment réserver une table ?",
+    answer:
+      `Réservez directement via le formulaire sur cette page, ou appelez-nous / écrivez-nous sur WhatsApp au ${SITE.phone}. Nous confirmons par e-mail, généralement dans l'heure pendant le service.`,
   },
   ...RESERVATION_NOTES.map((n) => ({ question: n.title, answer: n.desc })),
 ]
