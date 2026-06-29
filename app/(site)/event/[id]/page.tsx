@@ -10,10 +10,12 @@ import { SITE } from "@/lib/site"
 import { JsonLd } from "@/components/structured-data"
 import { eventSchema, breadcrumbSchema } from "@/lib/seo"
 
-/** Best-effort ISO start dates for datable events (Paris time). */
-const EVENT_START: Record<string, string> = {
-  harvest: "2026-10-18T19:00:00+02:00",
-  cellar: "2026-11-02T18:30:00+01:00",
+/** Best-effort ISO start/end times for datable events (Paris time). */
+const EVENT_DATES: Record<string, { start: string; end: string }> = {
+  // 19:00 — late → ~23:30
+  harvest: { start: "2026-10-18T19:00:00+02:00", end: "2026-10-18T23:30:00+02:00" },
+  // 18:30 — 21:00
+  cellar: { start: "2026-11-02T18:30:00+01:00", end: "2026-11-02T21:00:00+01:00" },
 }
 
 export function generateStaticParams() {
@@ -62,7 +64,7 @@ export default async function EventDetailPage({
     <>
       <JsonLd
         data={[
-          eventSchema(event, EVENT_START[event.id]),
+          eventSchema(event, EVENT_DATES[event.id]),
           breadcrumbSchema([
             { name: "Home", path: "/" },
             { name: "Events", path: "/events" },

@@ -3,7 +3,7 @@ import { seoConfig } from "@/lib/seo"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Amici et Amour — Italian & French Fine Dining, Paris",
+    name: "Amici et Amour — Pizzeria & Restaurant Italien à Sèvres",
     short_name: seoConfig.shortName,
     description: seoConfig.description,
     start_url: "/",
@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     background_color: "#FBFAF7",
     theme_color: "#C49A48",
-    lang: "en",
+    lang: "fr",
     categories: ["food", "restaurant", "lifestyle"],
     icons: [
       { src: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },

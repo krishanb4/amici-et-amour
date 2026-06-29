@@ -9,9 +9,9 @@ import { JsonLd } from "@/components/structured-data"
 import { menuSchema, breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "The Menu",
+  title: "La Carte — Pizzas, Pâtes & Plats Italiens à Sèvres",
   description:
-    "A visual menu of Amici et Amour — antipasti, pasta and pizza, the grill, dolci, and the bar. Italian soul, French finesse, in Paris.",
+    "La carte d'Amici et Amour à Sèvres : pizzas au feu de bois, pâtes fraîches, antipasti, grillades, dolci et bar. Pizzeria et restaurant italien, du lundi au samedi.",
   alternates: { canonical: "/menu" },
 }
 

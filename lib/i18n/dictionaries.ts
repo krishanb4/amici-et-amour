@@ -7,12 +7,13 @@
 export type Locale = "en" | "fr"
 
 export const LOCALES: Locale[] = ["en", "fr"]
-export const DEFAULT_LOCALE: Locale = "en"
+// French-first: the audience is local (Sèvres / Hauts-de-Seine) and searches in French.
+export const DEFAULT_LOCALE: Locale = "fr"
 
 export const dictionaries = {
   en: {
     "brand.name": "Amici et Amour",
-    "brand.tagline": "Italian & French Fine Dining",
+    "brand.tagline": "Pizzeria & Italian Restaurant",
 
     "nav.home": "Home",
     "nav.menu": "Menu",
@@ -22,9 +23,9 @@ export const dictionaries = {
     "nav.contact": "Contact",
     "nav.reserve": "Reserve a Table",
 
-    "hero.location": "Paris",
+    "hero.location": "Sèvres",
     "hero.lede":
-      "An intimate fine-dining room in the heart of Paris, plating craft, tradition, and a little romance onto every course.",
+      "A wood-fired pizzeria, Italian kitchen and bar in Sèvres — pizzas, fresh pasta, and the big matches on screen, minutes from Paris.",
 
     "cta.explore_menu": "Explore Menu",
     "cta.read_story": "Read Our Story",
@@ -36,7 +37,7 @@ export const dictionaries = {
     "cta.learn_more": "Learn More",
 
     "footer.blurb":
-      "A cinematic journey through Italian and French cuisine in the heart of Paris — where craft, tradition, and passion meet at the table.",
+      "A wood-fired pizzeria and Italian table in Sèvres, with a bar that screens the big matches — pizza, pasta, and good company, minutes from Paris.",
     "footer.quick_links": "Quick Links",
     "footer.hours": "Opening Hours",
     "footer.location": "Location",
@@ -57,7 +58,7 @@ export const dictionaries = {
   },
   fr: {
     "brand.name": "Amici et Amour",
-    "brand.tagline": "Haute Cuisine Italienne & Française",
+    "brand.tagline": "Pizzeria & Restaurant Italien",
 
     "nav.home": "Accueil",
     "nav.menu": "Carte",
@@ -67,9 +68,9 @@ export const dictionaries = {
     "nav.contact": "Contact",
     "nav.reserve": "Réserver une Table",
 
-    "hero.location": "Paris",
+    "hero.location": "Sèvres",
     "hero.lede":
-      "Une salle intime au cœur de Paris, où l'art, la tradition et un soupçon de romance se déposent dans chaque assiette.",
+      "Pizzeria au feu de bois, cuisine italienne et bar à Sèvres — pizzas, pâtes fraîches et les grands matchs sur écran, à deux pas de Paris.",
 
     "cta.explore_menu": "Découvrir la Carte",
     "cta.read_story": "Notre Histoire",
@@ -81,7 +82,7 @@ export const dictionaries = {
     "cta.learn_more": "En Savoir Plus",
 
     "footer.blurb":
-      "Un voyage cinématographique à travers la cuisine italienne et française au cœur de Paris — où l'art, la tradition et la passion se rencontrent à table.",
+      "Pizzeria au feu de bois et table italienne à Sèvres, avec un bar qui diffuse les grands matchs — pizzas, pâtes et bonne compagnie, à deux pas de Paris.",
     "footer.quick_links": "Liens Rapides",
     "footer.hours": "Heures d'Ouverture",
     "footer.location": "Adresse",

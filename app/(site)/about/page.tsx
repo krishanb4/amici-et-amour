@@ -12,9 +12,9 @@ import { JsonLd } from "@/components/structured-data"
 import { breadcrumbSchema } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "À propos",
   description:
-    "Amici et Amour — Italian soul, French finesse. Fifteen years of honest food cooked with heart, in the heart of Paris.",
+    "Amici et Amour — pizzeria et restaurant italien à Sèvres. Pizzas au feu de bois, pâtes fraîches et une vraie cuisine italienne dans une ambiance conviviale, à deux pas de Paris.",
   alternates: { canonical: "/about" },
 }
 

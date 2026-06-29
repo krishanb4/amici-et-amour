@@ -8,9 +8,9 @@ import { JsonLd } from "@/components/structured-data"
 import { breadcrumbSchema, abs } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Journal",
+  title: "Le Journal",
   description:
-    "Notes from the kitchen at Amici et Amour — sourcing, craft, and the small obsessions behind the plate.",
+    "Les notes de la cuisine d'Amici et Amour à Sèvres — la pizza, les produits italiens et les petites obsessions derrière chaque assiette.",
   alternates: { canonical: "/blogs" },
 }
 

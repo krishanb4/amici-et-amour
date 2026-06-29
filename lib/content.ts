@@ -34,11 +34,11 @@ export const SPECIALTIES = [
 ] as const
 
 export const MENU_CATEGORIES = [
-  { id: "antipasti", name: "Antipasti", count: 9, note: "To begin, shared and slow.", img: "/images/starters/3D1A4694.jpg" },
+  { id: "antipasti", name: "Antipasti", count: 9, note: "To begin, shared and slow.", img: "/images/starters/IMG_8653.jpg" },
   { id: "primi", name: "Primi & Pasta", count: 12, note: "Rolled and cut each morning.", img: "/images/mains/3D1A4736.jpg" },
-  { id: "grill", name: "From the Grill", count: 8, note: "Live fire, aged cuts.", img: "/images/mains/3D1A4712.jpg" },
+  { id: "grill", name: "From the Grill", count: 8, note: "Live fire, aged cuts.", img: "/images/mains/IMG_8776.jpg" },
   { id: "plateau", name: "Le Plateau", count: 7, note: "The coast, on ice.", img: "/images/mains/3D1A4730.jpg" },
-  { id: "dolci", name: "Dolci", count: 10, note: "France meets Italy, sweetly.", img: "/images/desserts/3D1A4778.jpg" },
+  { id: "dolci", name: "Dolci", count: 10, note: "France meets Italy, sweetly.", img: "/images/desserts/IMG_8810.jpg" },
   { id: "cellar", name: "Cellar & Bar", count: 140, note: "Old world, low intervention.", img: "/images/drinks/3D1A4802.jpg" },
 ] as const
 
